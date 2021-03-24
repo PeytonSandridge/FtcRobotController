@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.driveTools;
+package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain;
 
 public abstract class DriveTrain {
     protected DriveConfig driveConfig;
@@ -53,16 +53,36 @@ public abstract class DriveTrain {
         }
     }
 
+    protected void normalizePowers() {
+        double max = max(Math.abs(frontRightPow), Math.abs(frontLeftPow));
+        max = max(max, Math.abs(backLeftPow));
+        max = max(max, Math.abs(backRightPow));
+
+        if (max > 1) {
+            frontLeftPow /= max;
+            frontRightPow /= max;
+            backLeftPow /= max;
+            backRightPow /= max;
+        }
+    }
+
+    private double max(double a, double b) {
+        return a > b ? a : b;
+    }
+
+
     protected void setMotorPowers() {
-        driveLayout.backLeft.setPower(backLeftPow);
-        driveLayout.backRight.setPower(backRightPow);
-        driveLayout.frontRight.setPower(frontRightPow);
-        driveLayout.frontLeft.setPower(frontLeftPow);
+        driveLayout.getBackLeft().setPower(backLeftPow);
+        driveLayout.getBackRight().setPower(backRightPow);
+        driveLayout.getFrontRight().setPower(frontRightPow);
+        driveLayout.getFrontLeft().setPower(frontLeftPow);
     }
     public void setMotorPowers(double fLP, double bLP, double fRP, double bRP) {
-        driveLayout.backLeft.setPower(bLP);
-        driveLayout.backRight.setPower(bRP);
-        driveLayout.frontRight.setPower(fRP);
-        driveLayout.frontLeft.setPower(fLP);
+        driveLayout.getBackLeft().setPower(bLP);
+        driveLayout.getBackRight().setPower(bRP);
+        driveLayout.getFrontRight().setPower(fRP);
+        driveLayout.getFrontLeft().setPower(fLP);
     }
+
+
 }

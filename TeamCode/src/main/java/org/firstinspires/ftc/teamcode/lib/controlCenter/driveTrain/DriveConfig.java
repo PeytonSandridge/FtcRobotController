@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.driveTools;
+package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain;
 
 public class DriveConfig {
     // variables for handling motor specific multipliers
@@ -82,6 +82,11 @@ public class DriveConfig {
     public void setMovementSpecificMultipliers(double rotationMult, double straightMult) {
         this.rotationMult = rotationMult;
         this.straightMult = straightMult;
+    }
+    public void setMovementSpecificMultipliers(double rotationMult, double straightMult, double strafeMult) {
+        this.rotationMult = rotationMult;
+        this.straightMult = straightMult;
+        this.strafeMult = strafeMult;
     }
 
     public void setRotationMult(double rotationMult) {
