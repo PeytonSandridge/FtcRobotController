@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains;
+package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative;
 
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveConfig;
+import org.firstinspires.ftc.teamcode.lib.mathTools.Vector;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.Drive3D;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveConfig;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveLayout;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveTrain;
-import org.firstinspires.ftc.teamcode.lib.Vector;
 
 public class MecDrive extends DriveTrain implements Drive3D {
 
@@ -19,7 +19,7 @@ public class MecDrive extends DriveTrain implements Drive3D {
 
     @Override
     protected void applyMovementSpecificTransformations() {
-        applyMovementSpecificTransformations3D();
+        applyGenericMovementSpecificTransformations3D();
     }
 
     public void drive(double straight, double rotational, double strafe) {

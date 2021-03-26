@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains;
+package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative;
 
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveConfig;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.Drive3D;
@@ -18,7 +18,7 @@ public class XDrive extends DriveTrain implements Drive3D {
 
     @Override
     protected void applyMovementSpecificTransformations() {
-        applyMovementSpecificTransformations3D();
+        applyGenericMovementSpecificTransformations3D();
     }
 
     public void drive(double straight, double rotational, double strafe) {

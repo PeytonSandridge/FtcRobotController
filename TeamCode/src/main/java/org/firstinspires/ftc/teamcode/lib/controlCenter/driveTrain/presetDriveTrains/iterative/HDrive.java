@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains;
+package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative;
 
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveConfig;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.Drive2D;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveTrain;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.DriveTrain2D;
 
-public class HDrive extends DriveTrain implements Drive2D {
+public class HDrive extends DriveTrain2D implements Drive2D {
 
     HDrive(DriveConfig driveConfig, DriveLayout driveLayout) {
         super(driveConfig, driveLayout);
@@ -14,6 +14,17 @@ public class HDrive extends DriveTrain implements Drive2D {
     public HDrive(DriveLayout driveLayout) {
         super(driveLayout);
     }
+
+    @Override
+    public void drive() {
+        if (yFun != null && wFun != null) {
+            drive(yFun.getAsDouble(), wFun.getAsDouble());
+        } else {
+            drive(0,0);
+            handleInvalidInputFunctions();
+        }
+    }
+
 
     @Override
     public void drive(double straightPower, double rotationPower) {
@@ -37,6 +48,6 @@ public class HDrive extends DriveTrain implements Drive2D {
 
     @Override
     protected void applyMovementSpecificTransformations() {
-        applyMovementSpecificTransformations2D();
+        applyGenericMovementSpecificTransformations2D();
     }
 }

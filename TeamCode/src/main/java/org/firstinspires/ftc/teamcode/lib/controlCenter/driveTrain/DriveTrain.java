@@ -1,7 +1,16 @@
 package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+import java.util.function.DoubleSupplier;
+
 public abstract class DriveTrain {
     protected DriveConfig driveConfig;
+    protected DriveLayout driveLayout;
+
+    protected DriverKeybinds controls;
+
+    protected Telemetry telemetry;
 
     protected double y = 0;
     protected double w = 0;
@@ -13,18 +22,80 @@ public abstract class DriveTrain {
     protected double backRightPow = 0;
 
 
-    protected DriveLayout driveLayout;
-
-
-
     public DriveTrain(DriveConfig driveConfig, DriveLayout driveLayout){
         this.driveConfig = driveConfig;
         this.driveLayout = driveLayout;
+        this.controls = null;
     }
     public DriveTrain(DriveLayout driveLayout) {
         this.driveConfig = new DriveConfig();
         this.driveLayout = driveLayout;
+        this.controls = null;
     }
+
+    public DriveTrain(DriveConfig driveConfig, DriveLayout driveLayout, DriverKeybinds controls){
+        this.driveConfig = driveConfig;
+        this.driveLayout = driveLayout;
+        this.controls = controls;
+    }
+    public DriveTrain(DriveLayout driveLayout, DriverKeybinds controls) {
+        this.driveConfig = new DriveConfig();
+        this.driveLayout = driveLayout;
+        this.controls = controls;
+    }
+
+    public DriveTrain(DriveConfig driveConfig, DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun){
+        this.driveConfig = driveConfig;
+        this.driveLayout = driveLayout;
+        this.controls = new DriverKeybinds(yFun, wFun);
+    }
+    public DriveTrain(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun) {
+        this.driveConfig = new DriveConfig();
+        this.driveLayout = driveLayout;
+        this.controls = new DriverKeybinds(yFun, wFun);
+    }
+
+
+
+
+
+    public DriveTrain(DriveConfig driveConfig, DriveLayout driveLayout, Telemetry telemetry){
+        this.driveConfig = driveConfig;
+        this.driveLayout = driveLayout;
+        this.controls = null;
+        this.telemetry = telemetry;
+    }
+    public DriveTrain(DriveLayout driveLayout, Telemetry telemetry) {
+        this.driveConfig = new DriveConfig();
+        this.driveLayout = driveLayout;
+        this.controls = null;
+        this.telemetry = telemetry;
+    }
+    public DriveTrain(DriveConfig driveConfig, DriveLayout driveLayout, DriverKeybinds controls, Telemetry telemetry){
+        this.driveConfig = driveConfig;
+        this.driveLayout = driveLayout;
+        this.controls = controls;
+        this.telemetry = telemetry;
+    }
+    public DriveTrain(DriveLayout driveLayout, DriverKeybinds controls, Telemetry telemetry) {
+        this.driveConfig = new DriveConfig();
+        this.driveLayout = driveLayout;
+        this.controls = controls;
+        this.telemetry = telemetry;
+    }
+    public DriveTrain(DriveConfig driveConfig, DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, Telemetry telemetry){
+        this.driveConfig = driveConfig;
+        this.driveLayout = driveLayout;
+        this.controls = new DriverKeybinds(yFun, wFun);
+        this.telemetry = telemetry;
+    }
+    public DriveTrain(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, Telemetry telemetry) {
+        this.driveConfig = new DriveConfig();
+        this.driveLayout = driveLayout;
+        this.controls = new DriverKeybinds(yFun, wFun);
+        this.telemetry = telemetry;
+    }
+
 
 
     protected void applyMotorSpecificTransformations() {
@@ -39,13 +110,13 @@ public abstract class DriveTrain {
 
 
     protected abstract void applyMovementSpecificTransformations();
-    protected void applyMovementSpecificTransformations2D() {
+    protected void applyGenericMovementSpecificTransformations2D() {
         if (driveConfig.areMovementSpecificMultipliersEnabled()) {
             y *= driveConfig.getStraightMult();
             w *= driveConfig.getRotationMult();
         }
     }
-    protected void applyMovementSpecificTransformations3D() {
+    protected void applyGenericMovementSpecificTransformations3D() {
         if (driveConfig.areMovementSpecificMultipliersEnabled()) {
             y *= driveConfig.getStraightMult();
             w *= driveConfig.getRotationMult();
