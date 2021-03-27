@@ -1,20 +1,15 @@
 package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative;
 
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.DriveTrainBuilder;
 import org.firstinspires.ftc.teamcode.lib.mathTools.Vector;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.Drive3D;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveConfig;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveTrain;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.Drive3D;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.DriveTrain;
 
 public class MecDrive extends DriveTrain implements Drive3D {
 
 
-    MecDrive(DriveConfig driveConfig, DriveLayout driveLayout) {
-        super(driveConfig, driveLayout);
-    }
-
-    public MecDrive(DriveLayout driveLayout) {
-        super(driveLayout);
+    public MecDrive(DriveTrainBuilder driveTrainBuilder) {
+        super(driveTrainBuilder);
     }
 
     @Override

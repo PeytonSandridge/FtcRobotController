@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.test.linear;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveLayout;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative.XDrive;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.teleOpTools.SmartController;
 
@@ -28,7 +28,7 @@ public class XDriveLin extends LinearOpMode {
         );
 
 
-        dt = new XDrive(dl);
+//        dt = new XDrive(dl);
         controller = new SmartController(gamepad1);
 
         Drive d = new XDriveLin.Drive("driver", controller::getLeftStickY, controller::getRightStickX, controller::getLeftStickX);

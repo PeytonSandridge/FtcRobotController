@@ -1,19 +1,14 @@
 package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative;
 
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveConfig;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.Drive3D;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveTrain;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.Drive3D;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.DriveTrain;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.DriveTrainBuilder;
 
 public class XDrive extends DriveTrain implements Drive3D {
 
 
-    XDrive(DriveConfig driveConfig, DriveLayout driveLayout) {
-        super(driveConfig, driveLayout);
-    }
-
-    public XDrive(DriveLayout driveLayout) {
-        super(driveLayout);
+    public XDrive(DriveTrainBuilder driveTrainBuilder) {
+        super(driveTrainBuilder);
     }
 
     @Override

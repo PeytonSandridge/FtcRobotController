@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain;
+package org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore;
 
 public class DriveConfig {
     // variables for handling motor specific multipliers

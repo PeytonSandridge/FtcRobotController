@@ -3,15 +3,15 @@ package org.firstinspires.ftc.teamcode.test.linear;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative.HDrive;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.linear.LinearHDrive;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.LinearDriveTrain2D;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.LinearDriveTrainBuilder;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybinds;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.driveTrains.LinearHDrive;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.teleOpTools.SmartController;
 
-import java.util.function.DoubleSupplier;
-
 public class HDriveLin extends LinearOpMode {
-    LinearHDrive hDrive;
+    LinearHDrive drive;
     DriveLayout dl;
 
     SmartController controller;
@@ -30,18 +30,16 @@ public class HDriveLin extends LinearOpMode {
 
 
         controller = new SmartController(gamepad1);
+        DriverKeybinds controls = new DriverKeybinds(controller::getLeftStickY, controller::getRightStickX);
 
-
-        hDrive = new LinearHDrive(dl, controller::getLeftStickY, controller::getRightStickX, this::running);
-
+        //hDrive = new LinearDriveTrain2D(dl, controller::getLeftStickY, controller::getRightStickX, this::running);
+        drive = new LinearHDrive(new LinearDriveTrainBuilder(dl, controls, telemetry, this::running));
         waitForStart();
         runtime.reset();
 
-        hDrive.start();
-        while (opModeIsActive()) {
-            wait(100);
-            telemetry.addData("Time passed: ", runtime.seconds() + " seconds.");
-            telemetry.update();
+        drive.start();
+        while (running()) {
+            idle();
         }
 
     }
