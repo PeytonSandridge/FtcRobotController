@@ -28,13 +28,18 @@ public class DriveTrainBuilder {
     public DriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun) {
         factory(driveLayout, driveConfig, new DriverKeybinds(yFun, wFun), null);
     }
+    public DriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun) {
+        factory(driveLayout, driveConfig, new DriverKeybinds(yFun, wFun, xFun), null);
+    }
     public DriveTrainBuilder(DriveLayout driveLayout, DriverKeybinds controls) {
         factory(driveLayout, null, controls, null);
     }
     public DriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun) {
         factory(driveLayout, null, new DriverKeybinds(yFun, wFun), null);
     }
-
+    public DriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun) {
+        factory(driveLayout, null, new DriverKeybinds(yFun, wFun, xFun), null);
+    }
     public DriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, Telemetry telemetry) {
         factory(driveLayout, driveConfig, null, telemetry);
     }
@@ -50,9 +55,17 @@ public class DriveTrainBuilder {
     public DriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, Telemetry telemetry) {
         factory(driveLayout, driveConfig, new DriverKeybinds(yFun, wFun), telemetry);
     }
+    public DriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xfun, Telemetry telemetry) {
+        factory(driveLayout, driveConfig, new DriverKeybinds(yFun, wFun, xfun), telemetry);
+    }
     public DriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, Telemetry telemetry) {
         factory(driveLayout, null, new DriverKeybinds(yFun, wFun), telemetry);
     }
+    public DriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, Telemetry telemetry) {
+        factory(driveLayout, null, new DriverKeybinds(yFun, wFun, xFun), telemetry);
+    }
+
+
 
     public void factory(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry) {
         if (driveLayout == null) {

@@ -35,6 +35,11 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
         factory(running, null);
     }
 
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, BooleanSupplier running) {
+        super(driveLayout, driveConfig, yFun, wFun, xFun);
+        factory(running, null);
+    }
+
     public LinearDriveTrainBuilder(DriveLayout driveLayout, DriverKeybinds controls, BooleanSupplier running) {
         super(driveLayout, controls);
         factory(running, null);
@@ -42,6 +47,11 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
 
     public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, BooleanSupplier running) {
         super(driveLayout, yFun, wFun);
+        factory(running, null);
+    }
+
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, BooleanSupplier running) {
+        super(driveLayout, yFun, wFun, xFun);
         factory(running, null);
     }
 
@@ -70,11 +80,20 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
         factory(running, null);
     }
 
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, Telemetry telemetry, BooleanSupplier running) {
+        super(driveLayout, driveConfig, yFun, wFun, xFun, telemetry);
+        factory(running, null);
+    }
+
     public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, Telemetry telemetry, BooleanSupplier running) {
         super(driveLayout, yFun, wFun, telemetry);
         factory(running, null);
     }
 
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, Telemetry telemetry, BooleanSupplier running) {
+        super(driveLayout, yFun, wFun, xFun, telemetry);
+        factory(running, null);
+    }
 
     public LinearDriveTrainBuilder(DriveLayout driveLayout, BooleanSupplier running, String threadName) {
         super(driveLayout);
@@ -96,6 +115,11 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
         factory(running, threadName);
     }
 
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, BooleanSupplier running, String threadName) {
+        super(driveLayout, driveConfig, yFun, wFun, xFun);
+        factory(running, threadName);
+    }
+
     public LinearDriveTrainBuilder(DriveLayout driveLayout, DriverKeybinds controls, BooleanSupplier running, String threadName) {
         super(driveLayout, controls);
         factory(running, threadName);
@@ -103,6 +127,11 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
 
     public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, BooleanSupplier running, String threadName) {
         super(driveLayout, yFun, wFun);
+        factory(running, threadName);
+    }
+
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, BooleanSupplier running, String threadName) {
+        super(driveLayout, yFun, wFun, xFun);
         factory(running, threadName);
     }
 
@@ -131,8 +160,18 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
         factory(running, threadName);
     }
 
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DriveConfig driveConfig, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, Telemetry telemetry, BooleanSupplier running, String threadName) {
+        super(driveLayout, driveConfig, yFun, wFun, xFun, telemetry);
+        factory(running, threadName);
+    }
+
     public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, Telemetry telemetry, BooleanSupplier running, String threadName) {
         super(driveLayout, yFun, wFun, telemetry);
+        factory(running, threadName);
+    }
+
+    public LinearDriveTrainBuilder(DriveLayout driveLayout, DoubleSupplier yFun, DoubleSupplier wFun, DoubleSupplier xFun, Telemetry telemetry, BooleanSupplier running, String threadName) {
+        super(driveLayout, yFun, wFun, xFun, telemetry);
         factory(running, threadName);
     }
 

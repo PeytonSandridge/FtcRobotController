@@ -33,19 +33,17 @@ public class HDriveLin extends LinearOpMode {
         DriverKeybinds controls = new DriverKeybinds(controller::getLeftStickY, controller::getRightStickX);
 
         //hDrive = new LinearDriveTrain2D(dl, controller::getLeftStickY, controller::getRightStickX, this::running);
-        drive = new LinearHDrive(new LinearDriveTrainBuilder(dl, controls, telemetry, this::running));
+        drive = new LinearHDrive(new LinearDriveTrainBuilder(dl, controls, telemetry, this::opModeIsActive));
         waitForStart();
         runtime.reset();
 
         drive.start();
-        while (running()) {
+
+
+        while (opModeIsActive()) {
             idle();
         }
 
-    }
-
-    public synchronized boolean running() {
-        return opModeIsActive();
     }
 }
 

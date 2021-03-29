@@ -24,6 +24,19 @@ public abstract class DriveTrainLinear extends DriveTrain implements Runnable{
     }
 
 
+    @Override
+    public void run() {
+        while (running.getAsBoolean()) {
+            double y = controls.yFun.getAsDouble();
+            double w = controls.wFun.getAsDouble();
+
+            _drive();
+        }
+    }
+
+
+    protected abstract void _drive();
+
 
     public void start() {
         if (telemetry != null) {

@@ -8,14 +8,12 @@ import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybind
 
 import java.util.function.BooleanSupplier;
 
-public abstract class LinearDriveTrain2D extends DriveTrainLinear implements Drive2D {
-
-
-    protected LinearDriveTrain2D(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
+public abstract class LinearDriveTrain3D extends DriveTrainLinear {
+    protected LinearDriveTrain3D(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
         super(driveLayout, driveConfig, controls, telemetry, running, threadName);
     }
 
-    protected LinearDriveTrain2D(LinearDriveTrainBuilder builder) {
+    protected LinearDriveTrain3D(LinearDriveTrainBuilder builder) {
         super(builder);
     }
 
