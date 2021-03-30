@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class DriveLayout {
-    // TODO: replace with setters and getters
     private DcMotor frontLeft;
     private DcMotor backLeft;
     private DcMotor frontRight;

@@ -6,7 +6,13 @@ import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.DriveTrainBuilder;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybinds;
 
-public abstract class DriveTrain {
+import java.io.InvalidObjectException;
+import java.util.function.DoubleSupplier;
+
+public class DriveTrain<T extends Drive> {
+
+    protected T driver;
+
     protected DriveLayout driveLayout;
     protected DriveConfig driveConfig;
 
@@ -14,9 +20,9 @@ public abstract class DriveTrain {
 
     protected Telemetry telemetry;
 
-    protected double y = 0;
-    protected double w = 0;
-    protected double x = 0;
+    protected Double y;
+    protected Double w;
+    protected Double x;
 
     protected double frontLeftPow = 0;
     protected double frontRightPow = 0;
@@ -30,14 +36,19 @@ public abstract class DriveTrain {
         this.driveConfig = driveConfig;
         this.controls = controls;
         this.telemetry = telemetry;
+        this.y = new Double(0);
+        this.w = new Double(0);
+        this.x = new Double(0);
     }
 
     protected DriveTrain(DriveTrainBuilder dTBuilder) {
-        this.driveLayout = dTBuilder.getDriveLayout();
-        this.driveConfig = dTBuilder.getDriveConfig();
-        this.controls = dTBuilder.getControls();
-        this.telemetry = dTBuilder.getTelemetry();
+        this(dTBuilder.getDriveLayout(),
+                dTBuilder.getDriveConfig(),
+                dTBuilder.getControls(),
+                dTBuilder.getTelemetry());
     }
+
+
 
 
 
@@ -52,7 +63,10 @@ public abstract class DriveTrain {
     }
 
 
-    protected abstract void applyMovementSpecificTransformations();
+    // TODO: FIX THIS
+    protected void applyMovementSpecificTransformations() {
+        applyGenericMovementSpecificTransformations3D();
+    }
     protected void applyGenericMovementSpecificTransformations2D() {
         if (driveConfig.areMovementSpecificMultipliersEnabled()) {
             y *= driveConfig.getStraightMult();
@@ -101,5 +115,24 @@ public abstract class DriveTrain {
         driveLayout.getFrontLeft().setPower(fLP);
     }
 
+    public void updateInputs() {
+        if (controls == null) {
+            throw new Error("DriverKeybinds controls not initialized.");
+        }
 
+        if (!controls.is2D) {
+            this.x = controls.xFun.getAsDouble();
+        }
+
+        this.y = controls.yFun.getAsDouble();
+        this.w = controls.wFun.getAsDouble();
+    }
+
+    protected void applyDriveFunction() {
+        driver.drive(y, w, x);
+        this.frontLeftPow = driver.frontLeftPower;
+        this.frontRightPow = driver.frontLeftPower;
+        this.backLeftPow = driver.backLeftPower;
+        this.backRightPow = driver.backRightPower;
+    }
 }

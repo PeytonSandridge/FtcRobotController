@@ -8,18 +8,18 @@ import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybind
 
 import java.util.function.BooleanSupplier;
 
-public abstract class DriveTrainLinear extends DriveTrain implements Runnable{
+public class DriveTrainLinear<T extends Drive> extends DriveTrain implements Runnable{
     protected String threadName;
     protected Thread thread;
     protected BooleanSupplier running;
 
-    protected DriveTrainLinear(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
+    public DriveTrainLinear(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
         super(driveLayout, driveConfig, controls, telemetry);
         this.running = running;
         this.threadName = threadName;
     }
 
-    protected DriveTrainLinear(LinearDriveTrainBuilder builder) {
+    public DriveTrainLinear(LinearDriveTrainBuilder builder) {
         this(builder.getDriveLayout(), builder.getDriveConfig(), builder.getControls(), builder.getTelemetry(), builder.getRunning(), builder.getThreadName());
     }
 
@@ -27,16 +27,19 @@ public abstract class DriveTrainLinear extends DriveTrain implements Runnable{
     @Override
     public void run() {
         while (running.getAsBoolean()) {
-            double y = controls.yFun.getAsDouble();
-            double w = controls.wFun.getAsDouble();
+            updateInputs();
 
-            _drive();
+            applyMovementSpecificTransformations();
+
+            applyDriveFunction();
+
+            normalizePowers();
+
+            applyMotorSpecificTransformations();
+
+            setMotorPowers();
         }
     }
-
-
-    protected abstract void _drive();
-
 
     public void start() {
         if (telemetry != null) {
@@ -49,5 +52,10 @@ public abstract class DriveTrainLinear extends DriveTrain implements Runnable{
             thread = new Thread(this, threadName);
             thread.start();
         }
+    }
+
+    @Override
+    protected void applyMovementSpecificTransformations() {
+
     }
 }

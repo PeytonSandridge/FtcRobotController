@@ -1,33 +1,14 @@
 package org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.driveTrains;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveConfig;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybinds;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.LinearDriveTrain2D;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.LinearDriveTrainBuilder;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.Drive2D;
 
-import java.util.function.BooleanSupplier;
-
-public class LinearHDrive extends LinearDriveTrain2D {
-
-
-    public LinearHDrive(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
-        super(driveLayout, driveConfig, controls, telemetry, running, threadName);
-    }
-
-    public LinearHDrive(LinearDriveTrainBuilder builder) {
-        super(builder);
-    }
-
+public class LinearHDrive extends Drive2D {
     @Override
     public void drive(double y, double w) {
-        this.telemetry.addData("driving", 1);
-
         // equations for calculation the power of each individual motor
-        frontLeftPow = y + w;
-        backLeftPow = y + w;
-        frontRightPow = w - y;
-        backRightPow = w - y;
+        this.frontLeftPower = y + w;
+        this.backLeftPower = y + w;
+        this.frontRightPower = w - y;
+        this.backRightPower = w - y;
     }
 }

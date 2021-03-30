@@ -1,24 +1,9 @@
 package org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.driveTrains;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveConfig;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.LinearDriveTrain3D;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.LinearDriveTrainBuilder;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybinds;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.Drive3D;
 import org.firstinspires.ftc.teamcode.lib.mathTools.Vector;
 
-import java.util.function.BooleanSupplier;
-
-public class LinearMecanumDrive extends LinearDriveTrain3D {
-
-    public LinearMecanumDrive(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
-        super(driveLayout, driveConfig, controls, telemetry, running, threadName);
-    }
-
-    public LinearMecanumDrive(LinearDriveTrainBuilder builder) {
-        super(builder);
-    }
+public class LinearMecanumDrive extends Drive3D {
 
     @Override
     public void drive(double y, double w, double x) {
@@ -29,10 +14,10 @@ public class LinearMecanumDrive extends LinearDriveTrain3D {
 
 
         // equations for calculation the power of each individual motor
-        frontLeftPow = Math.sin(lateral.direction + (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
-        backLeftPow = Math.sin(lateral.direction - (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
-        frontRightPow = -Math.sin(lateral.direction - (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
-        backRightPow = -Math.sin(lateral.direction + (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
+        this.frontLeftPower = Math.sin(lateral.direction + (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
+        this.backLeftPower = Math.sin(lateral.direction - (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
+        this.frontRightPower = -Math.sin(lateral.direction - (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
+        this.backRightPower = -Math.sin(lateral.direction + (1.0/4.0) * Math.PI) * lateral.magnitude + turn;
 
         // method to apply motor specific multipliers
 

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.LinearDriveTrain2D;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.DriveTrainLinear;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.LinearDriveTrainBuilder;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybinds;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.driveTrains.LinearHDrive;
@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.lib.controlCenter.teleOpTools.SmartControl
 
 @TeleOp
 public class HDriveLin extends LinearOpMode {
-    LinearHDrive drive;
+    DriveTrainLinear drive;
     DriveLayout dl;
 
     SmartController controller;
@@ -39,15 +39,14 @@ public class HDriveLin extends LinearOpMode {
         DriverKeybinds controls = new DriverKeybinds(controller::getLeftStickY, controller::getRightStickX);
 
         //hDrive = new LinearDriveTrain2D(dl, controller::getLeftStickY, controller::getRightStickX, this::running);
-        drive = new LinearHDrive(new LinearDriveTrainBuilder(dl, controls, telemetry, this::opModeIsActive));
+        drive = new DriveTrainLinear(new LinearDriveTrainBuilder(dl, controls, telemetry, this::opModeIsActive));
+
         waitForStart();
         runtime.reset();
 
-        telemetry.addLine("prepared for start");
-        telemetry.update();
+
         drive.start();
 
-        telemetry.addLine("started");
 
         while (opModeIsActive()) {
 
