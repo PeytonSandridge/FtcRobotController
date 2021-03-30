@@ -4,10 +4,14 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class SmartController {
     private Gamepad gamepad;
+
     double leftStickYDeadZone;
     double leftStickXDeadZone;
     double rightStickYDeadZone;
     double rightStickXDeadZone;
+
+    double leftTriggerDeadZone;
+    double rightTriggerDeadZone;
 
     public SmartController(Gamepad gamepad) {
         this.gamepad = gamepad;
@@ -63,6 +67,72 @@ public class SmartController {
     }
     public double getRightStickYDeadZone() {
         return rightStickYDeadZone;
+    }
+
+    public double getRawLeftTrigger() {
+        return gamepad.left_trigger;
+    }
+    public double getLeftTrigger() {
+        return checkThreshhold(gamepad.left_trigger, leftTriggerDeadZone);
+    }
+    public void setLeftTriggerDeadZone(double leftTriggerDeadZone) {
+        this.leftTriggerDeadZone = leftTriggerDeadZone;
+    }
+    public double getLeftTriggerDeadZone() {
+        return leftTriggerDeadZone;
+    }
+
+    public double getRawRightTrigger() {
+        return gamepad.right_trigger;
+    }
+    public double getRightTrigger() {
+        return checkThreshhold(gamepad.right_trigger, rightTriggerDeadZone);
+    }
+    public void setRightTriggerDeadZone(double rightTriggerDeadZone) {
+        this.rightTriggerDeadZone = rightTriggerDeadZone;
+    }
+    public double getRightTriggerDeadZone() {
+        return rightTriggerDeadZone;
+    }
+
+    public boolean getA() {
+        return gamepad.a;
+    }
+
+    public boolean getB() {
+        return gamepad.b;
+    }
+
+    public boolean getX() {
+        return gamepad.x;
+    }
+
+    public boolean getY() {
+        return gamepad.y;
+    }
+
+    public boolean getDpad_Up() {
+        return gamepad.dpad_up;
+    }
+
+    public boolean getDpad_Down() {
+        return gamepad.dpad_down;
+    }
+
+    public boolean getDpad_Left() {
+        return gamepad.dpad_left;
+    }
+
+    public boolean getDpad_Right() {
+        return gamepad.dpad_right;
+    }
+
+    public boolean getLeftBumper() {
+        return gamepad.left_bumper;
+    }
+
+    public boolean getRightBumper() {
+        return gamepad.right_bumper;
     }
 
     private double checkThreshhold(double val, double threshhold) {
