@@ -4,13 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driveTrain.presetDriveTrains.iterative.XDrive;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.driveTrains.LinearXDrive;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.teleOpTools.SmartController;
 
 import java.util.function.DoubleSupplier;
 
 public class XDriveLin extends LinearOpMode {
-    XDrive dt;
+    LinearXDrive dt;
     DriveLayout dl;
 
     SmartController controller;
@@ -40,7 +40,6 @@ public class XDriveLin extends LinearOpMode {
         while (running()) {
             Thread.sleep(100);
         }
-
     }
 
     public synchronized boolean running() {

@@ -12,7 +12,7 @@ import java.util.function.BooleanSupplier;
 public class LinearHDrive extends LinearDriveTrain2D {
 
 
-    protected LinearHDrive(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
+    public LinearHDrive(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
         super(driveLayout, driveConfig, controls, telemetry, running, threadName);
     }
 
@@ -22,6 +22,8 @@ public class LinearHDrive extends LinearDriveTrain2D {
 
     @Override
     public void drive(double y, double w) {
+        this.telemetry.addData("driving", 1);
+
         // equations for calculation the power of each individual motor
         frontLeftPow = y + w;
         backLeftPow = y + w;

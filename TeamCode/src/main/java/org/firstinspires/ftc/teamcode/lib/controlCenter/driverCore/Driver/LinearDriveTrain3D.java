@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybind
 
 import java.util.function.BooleanSupplier;
 
-public abstract class LinearDriveTrain3D extends DriveTrainLinear {
+public abstract class LinearDriveTrain3D extends DriveTrainLinear implements Drive3D {
     protected LinearDriveTrain3D(DriveLayout driveLayout, DriveConfig driveConfig, DriverKeybinds controls, Telemetry telemetry, BooleanSupplier running, String threadName) {
         super(driveLayout, driveConfig, controls, telemetry, running, threadName);
     }
@@ -28,12 +28,13 @@ public abstract class LinearDriveTrain3D extends DriveTrainLinear {
     @Override
     protected void _drive() {
         // stores the two power Vectors into respective variables
-        double y = controls.yFun.getAsDouble();
-        double w = controls.wFun.getAsDouble();
+        this.y = controls.yFun.getAsDouble();
+        this.w = controls.wFun.getAsDouble();
+        this.x = controls.xFun.getAsDouble();
 
         applyMovementSpecificTransformations();
 
-        drive(this.y, this.w);
+        drive(this.y, this.w, this.x);
 
         // method to apply motor specific multipliers
         applyMotorSpecificTransformations();
@@ -41,8 +42,6 @@ public abstract class LinearDriveTrain3D extends DriveTrainLinear {
         setMotorPowers();
     }
 
-
-    public abstract void drive(double y, double w);
 
     @Override
     protected void applyMovementSpecificTransformations() {

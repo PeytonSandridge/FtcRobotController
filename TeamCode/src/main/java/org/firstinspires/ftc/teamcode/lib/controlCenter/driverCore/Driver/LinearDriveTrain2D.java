@@ -30,8 +30,8 @@ public abstract class LinearDriveTrain2D extends DriveTrainLinear implements Dri
     @Override
     protected void _drive() {
         // stores the two power Vectors into respective variables
-        double y = controls.yFun.getAsDouble();
-        double w = controls.wFun.getAsDouble();
+        this.y = controls.yFun.getAsDouble();
+        this.w = controls.wFun.getAsDouble();
 
         applyMovementSpecificTransformations();
 
@@ -43,8 +43,6 @@ public abstract class LinearDriveTrain2D extends DriveTrainLinear implements Dri
         setMotorPowers();
     }
 
-
-    public abstract void drive(double y, double w);
 
     @Override
     protected void applyMovementSpecificTransformations() {

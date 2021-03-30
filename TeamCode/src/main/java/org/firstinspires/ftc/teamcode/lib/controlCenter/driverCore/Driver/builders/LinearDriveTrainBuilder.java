@@ -177,6 +177,18 @@ public class LinearDriveTrainBuilder extends DriveTrainBuilder {
 
     public void factory(BooleanSupplier running, String threadName) {
         super.factory(driveLayout, driveConfig, controls, telemetry);
+
+        if (running == null) {
+            throw new Error("Running method is null");
+        } else {
+            this.running = running;
+        }
+
+        if (threadName == null) {
+            this.threadName = "Linear Drivetrain";
+        } else {
+            this.threadName = threadName;
+        }
     }
 
     public BooleanSupplier getRunning() {

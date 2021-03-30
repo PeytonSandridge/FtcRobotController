@@ -24,10 +24,10 @@ public class DriveLayout {
 
     // TODO: make more user friendly
     void init (String frontLeftName, String backLeftName, String frontRightName, String backRightName, HardwareMap hardwareMap) {
-        frontLeft = hardwareMap.get(DcMotor.class, frontLeftName);
-        backLeft = hardwareMap.get(DcMotor.class, backLeftName);
-        frontRight = hardwareMap.get(DcMotor.class, frontRightName);
-        backRight = hardwareMap.get(DcMotor.class, backRightName);
+        this.frontLeft = hardwareMap.get(DcMotor.class, frontLeftName);
+        this.backLeft = hardwareMap.get(DcMotor.class, backLeftName);
+        this.frontRight = hardwareMap.get(DcMotor.class, frontRightName);
+        this.backRight = hardwareMap.get(DcMotor.class, backRightName);
     }
 
     @Deprecated

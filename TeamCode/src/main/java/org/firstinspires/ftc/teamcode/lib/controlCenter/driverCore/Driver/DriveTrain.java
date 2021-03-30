@@ -85,12 +85,15 @@ public abstract class DriveTrain {
     }
 
 
-    protected void setMotorPowers() {
+    protected void  setMotorPowers() {
+        normalizePowers();
+
         driveLayout.getBackLeft().setPower(backLeftPow);
         driveLayout.getBackRight().setPower(backRightPow);
         driveLayout.getFrontRight().setPower(frontRightPow);
         driveLayout.getFrontLeft().setPower(frontLeftPow);
     }
+
     public void setMotorPowers(double fLP, double bLP, double fRP, double bRP) {
         driveLayout.getBackLeft().setPower(bLP);
         driveLayout.getBackRight().setPower(bRP);
