@@ -6,16 +6,15 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriveLayout;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.DriveTrainLinear;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.LinearDriveTrainBuilder;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.DriveTrain;
+import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.Driver.builders.DriveTrainBuilder;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.DriverKeybinds;
-import org.firstinspires.ftc.teamcode.lib.controlCenter.driverCore.driveTrains.LinearHDrive;
 import org.firstinspires.ftc.teamcode.lib.controlCenter.teleOpTools.SmartController;
 
 
 @TeleOp
 public class HDriveLin extends LinearOpMode {
-    DriveTrainLinear drive;
+    DriveTrain drive;
     DriveLayout dl;
 
     SmartController controller;
@@ -38,18 +37,14 @@ public class HDriveLin extends LinearOpMode {
         controller = new SmartController(gamepad1);
         DriverKeybinds controls = new DriverKeybinds(controller::getLeftStickY, controller::getRightStickX);
 
-        //hDrive = new LinearDriveTrain2D(dl, controller::getLeftStickY, controller::getRightStickX, this::running);
-        drive = new DriveTrainLinear(new LinearDriveTrainBuilder(dl, controls, telemetry, this::opModeIsActive));
+        drive = new DriveTrain(new DriveTrainBuilder(dl, controls, telemetry, this::opModeIsActive));
 
         waitForStart();
         runtime.reset();
 
-
         drive.start();
 
-
         while (opModeIsActive()) {
-
             idle();
         }
 
